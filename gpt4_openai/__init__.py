@@ -16,6 +16,7 @@ class GPT4OpenAI(LLM):
     headless : bool = True
     __file__ = __file__
     model: str = "gpt-4"
+    customized: str = ""
 
     #### WARNING : for each api call this library will create a new chat on chat.openai.com
     @property
@@ -28,9 +29,9 @@ class GPT4OpenAI(LLM):
                 raise ValueError("Need a token , check https://chat.openai.com/api/auth/session for get your token")
             else:
                 if self.conversation == "":
-                    self.chatbot = ChatGptDriver(self.token, headless=self.headless, model=self.model)
+                    self.chatbot = ChatGptDriver(self.token, headless=self.headless, model=self.model,customized=self.customized)
                 elif self.conversation != "" :
-                    self.chatbot = ChatGptDriver(self.token, headless=self.headless, model=self.model, conversation_id=self.conversation)
+                    self.chatbot = ChatGptDriver(self.token, headless=self.headless, model=self.model, conversation_id=self.conversation,customized=self.customized)
                 else:
                     raise ValueError("Something went wrong")
 
