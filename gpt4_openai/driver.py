@@ -65,6 +65,7 @@ class ChatGptDriver:
         moderation: bool = True,
         verbose: bool = False,
         headless: bool = True,
+        customized: str = '',
     ):
         '''
         Initialize the ChatGPT object\n
@@ -96,7 +97,8 @@ class ChatGptDriver:
         self.__chrome_args = chrome_args
         self.__moderation = moderation
         self.__headless = headless
-
+        
+        self._customized = customized
         self._model = model
         self._chatgpt_chat_url = 'https://chat.openai.com'
 
@@ -136,6 +138,8 @@ class ChatGptDriver:
         weakref.finalize(self, self.__del__)
 
     def _get_url(self):
+        if self._customized!="":
+            return f"{self._chatgpt_chat_url}/g/{self._customized}"
         return f"{self._chatgpt_chat_url}/?model={self._model}"
 
     def __del__(self):
