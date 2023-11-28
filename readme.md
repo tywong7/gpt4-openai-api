@@ -21,7 +21,10 @@ from gpt4_openai import GPT4OpenAI
 
 # Token is the __Secure-next-auth.session-token from chat.openai.com
 llm = GPT4OpenAI(token=my_session_token, headless=False, model='gpt-4')
+#customized bot
+#llm = GPT4OpenAI(token=my_session_token, headless=False,  customized='g-UcnM9IY6T-test-coach')
 # GPT3.5 will answer 8, while GPT4 should be smart enough to answer 10
+print("loading...")
 response = llm('If there are 10 books in a room and I read 2, how many books are still in the room?')
 print(response)
 ```
